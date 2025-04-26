@@ -2,8 +2,11 @@
 <div class="col-4">
 
 <div>
-  <h3><%= @user.name %></h3>
+ <h3>User info</h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <h3>name             <%= @user.name %></h3>
+  introduction
+  <%= link_to "Edit", edit_user_path(current_user) %>  
 </div>
 
  <h2><strong>New Book</strong></h2>
@@ -20,7 +23,7 @@
   <%= f.text_area :body %>
 
 	
-  <div class="T"><%= f.submit 'Create Book' %></div>
+  <div class="T"><%= f.submit 'Create Book', class: "btn btn-success" %></div>
  <% end %>
 
 </div>
