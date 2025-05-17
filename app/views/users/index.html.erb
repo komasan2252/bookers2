@@ -1,0 +1,43 @@
+
+<%= render 'books/ten', book: @book %>
+
+
+<h2>Users</h2>
+
+
+<table class="table" style="width: 100%;">
+  <tr>
+    <th style="border-bottom: 1px solid #ccc;">Image</th>
+    <th style="border-bottom: 1px solid #ccc;">Name</th>
+    <th style="border-bottom: 1px solid #ccc;">　　</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= image_tag user.get_profile_image(100, 100) %>
+      </td>
+      <td><%= user.name %></td>
+      <td><%= link_to "Show", user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>  
+</div>  
+</div>

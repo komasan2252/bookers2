@@ -1,10 +1,17 @@
-welcome to<i class="fa-solid fa-book"></i> Bookers !!
-In Bookers,
+<div class = "top">
+<h1>welcome to<strong><i class="fa-solid fa-book"></i> Bookers !!</strong></h1>
 
+<br>
+In<strong><i class="fa-solid fa-book"></i> Bookers,</strong>
+<br><br>
 you can share and exchange your opinions , inpressions , and emotions
-
+<br><br>
 about various books!
+<br><br>
+</div>
+<div class= "top2">
+   <%= link_to "Log in", new_user_session_path, class: "btn btn-primary custom-width" %> 
+<br><br>
+<%= link_to "Sign up", new_user_registration_path, class: "btn btn-success custom-width" %> 
+</div>
 
-<li>  <%= link_to "Sign up", new_user_registration_path %>  </li>
-      
-      <li>    <%= link_to "Log in", new_user_session_path %>  </li>

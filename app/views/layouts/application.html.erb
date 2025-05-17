@@ -9,40 +9,54 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
    
+    
   </head>
 
-  <body>
-  <header>
+<body>
+<header>
+    <nav class="navbar bg-light px-3">
+      <div class="container-fluid d-flex w-100">
+        <div>  <%= link_to "Bookers",root_path, class: "navbar-brand" %>   </div>   
+     
+          <div class="d-flex ms-auto">
 
-    <li>  <%= link_to "Bookers",root_path %>  </li>     
+            <% if user_signed_in? %>
 
-    <% if user_signed_in? %>
+              <div>   <%= link_to user_path(current_user), class: "nav-link" do %> <i class="fa-solid fa-house"></i>Home <% end %></div>
+       
+              <div>  <%= link_to users_path, class: "nav-link" do %> <i class="fa-solid fa-users"></i>Users <% end %>  </div>
 
-      <li>  <%= link_to "Home", user_path(current_user) %>  </li>
-
-      <li>  <%= link_to "Users", users_new_path %>  </li>
-
-      <li>  <%= link_to "Books", books_path %>  </li>     
+              <div>   <%= link_to books_path, class: "nav-link" do %> <i class="fa-solid fa-book-open"></i>Books <% end %> </div>    
     
-      <li>    <%= link_to "Log out", destroy_user_session_path, method: :delete %>   </li>
+              <div>  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %> <i class="fa-solid fa-right-from-bracket"></i>Log out <% end %>  </div>
     
-    <% else %>
+             <% else %>
 
-      <li>  <%= link_to "Home", root_path %>  </li>     
+              <div>   <%= link_to root_path, class: "nav-link" do %> <i class="fa-solid fa-house"></i>Home <% end %> </div>     
+     
+              <div>   <%= link_to  about_path, class: "nav-link" do %> <i class="fa-solid fa-link"></i>About <% end %> </div>    
 
-      <li>  <%= link_to "About", about_path %>  </li>    
-
-      <li>  <%= link_to "Sign up", new_user_registration_path %>  </li>
+             <div>   <%= link_to new_user_registration_path, class: "nav-link" do %> <i class="fa-solid fa-user-plus"></i>Sign up <% end %> </div>
       
-      <li>    <%= link_to "Log in", new_user_session_path %>  </li>
+              <div>     <%= link_to new_user_session_path, class: "nav-link" do %> <i class="fa-solid fa-right-to-bracket"></i>Log in <% end %> </div>
 
-
-    <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>  
   </header>
-
+<br>
+  <main>
+  <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key == "notice" ? "success" : "danger" %>">
+      <%= message %>
+    </div>
+  <% end %>
   
-    <%= yield %>
 
+    <%= yield %>
+  </main>
 
     <footer>
   <p>CopyRight Infratop.inc</p>

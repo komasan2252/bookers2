@@ -1,2 +1,76 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+
+
+<div class="container">  
+<div class="row">  
+
+<div class="col-md-3">
+ <h2>User info</h2>
+<%= image_tag @book.user.get_profile_image(100,100) %>
+
+ <table class= "table w-100">
+  <tr>
+   <th>name</th>
+   <td><strong><%= @book.user.name %></storng></td>
+  </tr>
+  <tr>
+   <th>introduction</th>
+   <td><strong><%= @book.user.introduction %></strong></td>
+  </tr>
+ </table>
+
+  <%= link_to edit_user_path(@book.user),class:"btn btn-outline-dark w-100" do %><i class="fa-solid fa-user-gear"></i>  <% end %>
+
+<br>
+ <h2><strong>New book</strong></h2>
+
+
+
+ <%= form_with model: @book_new, local: true do |f| %>
+  
+  <br><div>Title</div>
+  
+ <%= f.text_field :title, class: "form-control w-80" %>
+	
+  <br><div>Opinion</div>
+  <%= f.text_area :body, class: "form-control w-80" %>
+
+	
+  <br><div><%= f.submit 'Create Book', class: "btn btn-success " %></div>
+ <% end %>
+</div>
+
+
+
+<div class="offset-md-1 col-md-8">
+ <h2>Book detail</h2>
+ 
+
+ <table class="table border-0">
+  <tr>
+   <td><%= link_to user_path(@book.user) do %>
+    <%= image_tag @book.user.get_profile_image(100, 100)%><br>
+    <%= link_to @book.user.name, user_path(@book.user) %><% end %>
+   </td>
+   
+    <td>
+      <div class="d-flex ">
+        　　　
+      <div><%= link_to @book.title, book_path(@book) %></div>
+        　　　
+        <div><%= @book.body %></div>
+        　　　
+        <% if @book.user == current_user %>
+          <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
+        　　　
+          <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか?" }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+     
+</div>  
+
+
+</div>  
+</div>
